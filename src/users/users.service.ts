@@ -28,4 +28,3 @@ export class UsersService {
     return this.users.find(role => role.token === token);
   }
 }
-

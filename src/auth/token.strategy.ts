@@ -12,7 +12,6 @@ export class TokenStrategy extends PassportStrategy(Strategy) {
   async validate(token): Promise<any> {
     const user = await this.usersService.findOne(token);
     if (user) {
-      console.log(user);
       return user;
     }
     throw new UnauthorizedException(); 
