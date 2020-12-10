@@ -2,6 +2,9 @@ import { Controller, Get, Post, Body, Put, Param, Delete } from '@nestjs/common'
 import { SkillsService } from './skills.service';
 import { CreateSkillDto } from './dto/create-skill.dto';
 import { UpdateSkillDto } from './dto/update-skill.dto';
+import { ApiTags } from '@nestjs/swagger';
+import { Skill } from './entities/skill.entity';
+
 
 @Controller('skills')
 export class SkillsController {
@@ -12,14 +15,19 @@ export class SkillsController {
     return this.skillsService.create(createSkillDto);
   }
 
+  @ApiTags('Skills')
   @Get()
   findAll() {
     return this.skillsService.findAll();
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.skillsService.findOne(+id);
+  findOne(@Param('id') id: string): Skill {
+    return {
+      category: 'Theory',
+      name: 'F',
+      proficency: 10
+    }
   }
 
   @Put(':id')

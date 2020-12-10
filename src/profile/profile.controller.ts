@@ -3,7 +3,10 @@ import { ProfileService } from './profile.service';
 import { CreateProfileDto } from './dto/create-profile.dto';
 import { UpdateProfileDto } from './dto/update-profile.dto';
 import { TokenAuthGuard } from '../auth/token-auth.guard';
+import { Roles } from 'src/common/decorators/roles.decorators';
+import { RolesGuard } from 'src/common/guards/roles.guard';
 
+@UseGuards(TokenAuthGuard, RolesGuard)
 @Controller('profile')
 export class ProfileController {
   constructor(private readonly profileService: ProfileService) {}
@@ -13,7 +16,6 @@ export class ProfileController {
     return this.profileService.create(createProfileDto);
   }
 
-  @UseGuards(TokenAuthGuard)
   @Get()
   findAll() {
     return this.profileService.findAll();
