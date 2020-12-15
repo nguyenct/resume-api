@@ -1,4 +1,5 @@
 export default () => ({
+  env: process.env.NODE_ENV,
   doc: {
     title: process.env.PAGE_TITLE || 'My Resume API',
     profileUrl: process.env.PROFILE_URL,

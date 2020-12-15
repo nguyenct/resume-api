@@ -14,7 +14,7 @@ async function bootstrap() {
     operationIdFactory: (_controllerKey: string, methodKey: string) =>
       methodKey,
   });
-  
+
   const redocOptions = {
     title: configService.get('doc').title,
     logo: {
