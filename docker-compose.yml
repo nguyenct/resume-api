@@ -1,18 +1,18 @@
 version: "3.8"
 services:
-  webapp:
+  api:
     depends_on:
-      - mongodb
+      - mongo
     build:
       context: .
       target: "${NODE_ENV}"
-      dockerfile: docker/webapp/Dockerfile
+      dockerfile: docker/api/Dockerfile
     volumes:
       - ./node_modules:/app/node_modules/
       - ./:/app/
     ports:
       - 3000:3000
-  mongodb:
+  mongo:
     image: mongo:4.4.2-bionic
     restart: always
     environment:
