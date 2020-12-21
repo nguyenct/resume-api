@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common';
+import { MongooseModule } from '@nestjs/mongoose';
 import { AppService } from './app.service';
-import { ConfigModule } from '@nestjs/config';
+import { ConfigModule, ConfigService } from '@nestjs/config';
 import { SkillsModule } from './skills/skills.module';
 import { EducationModule } from './education/education.module';
 import { ExperienceModule } from './experience/experience.module';
@@ -16,6 +17,13 @@ import config from './config/configuration';
     ConfigModule.forRoot({
       load: [config],
     }),
+    MongooseModule.forRootAsync({
+      imports: [ConfigModule],
+      useFactory: (configService: ConfigService) => ({
+        uri: configService.get('database').uri,
+      }),
+      inject: [ConfigService],
+    }),
     BasicsModule,
     EducationModule,
     ExperienceModule,
@@ -27,4 +35,6 @@ import config from './config/configuration';
   controllers: [ResumesController],
   providers: [AppService],
 })
-export class AppModule {}
+export class AppModule {
+  constructor(private configService: ConfigService) {}
+}
