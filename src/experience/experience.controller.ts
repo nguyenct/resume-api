@@ -2,7 +2,9 @@ import { Controller, Get, Post, Body, Put, Param, Delete } from '@nestjs/common'
 import { ExperienceService } from './experience.service';
 import { CreateExperienceDto } from './dto/create-experience.dto';
 import { UpdateExperienceDto } from './dto/update-experience.dto';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('Experience')
 @Controller('experience')
 export class ExperienceController {
   constructor(private readonly experienceService: ExperienceService) {}

@@ -5,7 +5,7 @@ import { UpdateSkillDto } from './dto/update-skill.dto';
 import { ApiTags } from '@nestjs/swagger';
 import { Skill } from './entities/skill.entity';
 
-
+@ApiTags('Skills')
 @Controller('skills')
 export class SkillsController {
   constructor(private readonly skillsService: SkillsService) {}
@@ -15,7 +15,6 @@ export class SkillsController {
     return this.skillsService.create(createSkillDto);
   }
 
-  @ApiTags('Skills')
   @Get()
   findAll() {
     return this.skillsService.findAll();
@@ -24,9 +23,11 @@ export class SkillsController {
   @Get(':id')
   findOne(@Param('id') id: string): Skill {
     return {
-      category: 'Theory',
-      name: 'F',
-      proficency: 10
+      name: 'Theory',
+      level: 'Senior',
+      keywords: [
+        'HTML'
+      ]
     }
   }
 

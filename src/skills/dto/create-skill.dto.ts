@@ -1,5 +1,5 @@
 export class CreateSkillDto {
-  category: string;
   name: string;
-  proficency: number;
+  level: string;
+  keywords: string[];
 }

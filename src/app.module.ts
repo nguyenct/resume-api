@@ -5,9 +5,10 @@ import { SkillsModule } from './skills/skills.module';
 import { EducationModule } from './education/education.module';
 import { ExperienceModule } from './experience/experience.module';
 import { ProjectsModule } from './projects/projects.module';
-import { ProfileModule } from './profile/profile.module';
 import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
+import { BasicsModule } from './basics/basics.module';
+import { ResumesController } from './resumes/resumes.controller';
 import config from './config/configuration';
 
 @Module({
@@ -15,15 +16,15 @@ import config from './config/configuration';
     ConfigModule.forRoot({
       load: [config],
     }),
-    SkillsModule,
+    BasicsModule,
     EducationModule,
     ExperienceModule,
-    ProjectsModule,
-    ProfileModule,
+    SkillsModule,
+    ProjectsModule, 
     AuthModule,
-    UsersModule
+    UsersModule,
   ],
-  controllers: [],
+  controllers: [ResumesController],
   providers: [AppService],
 })
 export class AppModule {}
