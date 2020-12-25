@@ -1,26 +1,28 @@
 import { Injectable } from '@nestjs/common';
+import { InjectModel } from '@nestjs/mongoose';
+import { Model } from 'mongoose';
 import { CreateExperienceDto } from './dto/create-experience.dto';
 import { UpdateExperienceDto } from './dto/update-experience.dto';
+import { Experience, ExperienceDocument } from './schemas/experience.schema';
 
 @Injectable()
 export class ExperienceService {
-  create(createExperienceDto: CreateExperienceDto) {
-    return 'This action adds a new experience';
+  constructor(@InjectModel(Experience.name) private experienceModel: Model<ExperienceDocument>) {}
+
+  async create(createExperienceDto: CreateExperienceDto): Promise<Experience> {
+    const createdExperience = new this.experienceModel(createExperienceDto);
+    return createdExperience.save();
   }
 
-  findAll() {
-    return `This action returns all experience`;
+  async findAll(): Promise<Experience[]> {
+    return this.experienceModel.find();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} experience`;
+  async update(id: string, updateExperienceDto: UpdateExperienceDto): Promise<Experience> {
+    return this.experienceModel.findByIdAndUpdate(id, updateExperienceDto, { new: true, useFindAndModify: false });
   }
 
-  update(id: number, updateExperienceDto: UpdateExperienceDto) {
-    return `This action updates a #${id} experience`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} experience`;
+  async remove(id: string): Promise<any> {
+    return this.experienceModel.deleteOne({ _id: id })
   }
 }
