@@ -7,6 +7,7 @@ import { Experience, ExperienceSchema } from './schemas/experience.schema';
 @Module({
   imports: [MongooseModule.forFeature([{ name: Experience.name, schema: ExperienceSchema }])],
   controllers: [ExperienceController],
-  providers: [ExperienceService]
+  providers: [ExperienceService],
+  exports: [ExperienceService]
 })
 export class ExperienceModule {}
