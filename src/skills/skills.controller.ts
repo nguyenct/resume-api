@@ -26,7 +26,7 @@ export class SkillsController {
     summary: 'Create skill',
     description: 'Creates the skill resource',
   })
-  create(@Body() createSkillDto: CreateSkillDto) {
+  createSkill(@Body() createSkillDto: CreateSkillDto) {
     return this.skillsService.create(createSkillDto);
   }
 
@@ -36,7 +36,7 @@ export class SkillsController {
     summary: 'List skill',
     description: 'Retrieves list of the skill resources',
   })
-  findAll() {
+  findAllSkill() {
     return this.skillsService.findAll();
   }
 
@@ -46,7 +46,7 @@ export class SkillsController {
     summary: 'Update skill',
     description: 'Updates the skill resource associated with the provided id',
   })
-  update(@Param('id') id: string, @Body() updateSkillDto: UpdateSkillDto) {
+  updateSkill(@Param('id') id: string, @Body() updateSkillDto: UpdateSkillDto) {
     return this.skillsService.update(id, updateSkillDto);
   }
 
@@ -57,7 +57,7 @@ export class SkillsController {
     description: 'Deletes the skill resource associated with the provided id',
   })
   @ApiOkResponse()
-  remove(@Param('id') id: string) {
+  removeSkill(@Param('id') id: string) {
     return this.skillsService.remove(id);
   }
 }
