@@ -1,5 +1,5 @@
 import { ApiPropertyOptional } from "@nestjs/swagger";
-import { IsNotEmpty, IsDateString, IsISO8601, IsOptional } from "class-validator";
+import { IsNotEmpty, IsISO8601, IsOptional } from "class-validator";
 
 export class CreateExperienceDto {
   @IsNotEmpty()
