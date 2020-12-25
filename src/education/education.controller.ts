@@ -31,7 +31,7 @@ export class EducationController {
   }
 
   @Get()
-  @Roles(Role.User)
+  @Roles(Role.Admin, Role.User)
   @ApiOperation({
     summary: 'List education',
     description: 'Retrieves list of the education resources',

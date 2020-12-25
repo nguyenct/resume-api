@@ -34,7 +34,7 @@ export class BasicsController {
   }
 
   @Get()
-  @Roles(Role.User)
+  @Roles(Role.Admin, Role.User)
   @ApiOperation({
     summary: 'List basic information',
     description: 'Retrieves a list of the basic information resource. Note: Only one can exist.',
@@ -44,7 +44,7 @@ export class BasicsController {
   }
 
   @Get(':id')
-  @Roles(Role.User)
+  @Roles(Role.Admin, Role.User)
   @ApiOperation({
     summary: 'Get basic information',
     description: 'Retrieves the basic information resource associated with the provided id. Note: Only one can exist.',
