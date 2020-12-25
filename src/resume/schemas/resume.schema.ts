@@ -10,18 +10,33 @@ export class Resume {
   @ApiPropertyOptional()
   basics: Basic;
   
-  @ApiPropertyOptional()
+  @ApiPropertyOptional({
+    type: Experience,
+    isArray: true,
+  })
   work: Experience[];
 
-  @ApiPropertyOptional()
+  @ApiPropertyOptional({
+    type: Volunteer,
+    isArray: true,
+  })
   volunteer: Volunteer[];
 
-  @ApiPropertyOptional()
+  @ApiPropertyOptional({
+    type: Education,
+    isArray: true,
+  })
   education: Education[];
 
-  @ApiPropertyOptional()
+  @ApiPropertyOptional({
+    type: Award,
+    isArray: true,
+  })
   awards: Award[];
 
-  @ApiPropertyOptional()
+  @ApiPropertyOptional({
+    type: Skill,
+    isArray: true,
+  })
   skills: Skill[];
 }
