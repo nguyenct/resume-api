@@ -1,6 +1,4 @@
-import { ApiProperty } from "@nestjs/swagger";
-
-class Profiles {
+export class Profiles {
   network: string;
   username: string;
   url: string;
