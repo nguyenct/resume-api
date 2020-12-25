@@ -5,7 +5,11 @@ import { Education, EducationSchema } from './schemas/education.schema';
 import { MongooseModule } from '@nestjs/mongoose';
 
 @Module({
-  imports: [MongooseModule.forFeature([{ name: Education.name, schema: EducationSchema }])],
+  imports: [
+    MongooseModule.forFeature([
+      { name: Education.name, schema: EducationSchema },
+    ]),
+  ],
   controllers: [EducationController],
   providers: [EducationService],
   exports: [EducationService],

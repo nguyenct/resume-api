@@ -5,7 +5,7 @@ import { UsersService } from 'src/users/users.service';
 import { ConfigService } from '@nestjs/config';
 
 @Module({
-    imports: [PassportModule],
-    providers: [TokenStrategy, UsersService, ConfigService]
+  imports: [PassportModule],
+  providers: [TokenStrategy, UsersService, ConfigService],
 })
 export class AuthModule {}

@@ -9,7 +9,7 @@ export class Experience {
   @ApiPropertyOptional()
   @Prop()
   company: string;
-  
+
   @ApiPropertyOptional()
   @Prop()
   position: string;

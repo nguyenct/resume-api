@@ -9,7 +9,14 @@ import { AwardsModule } from 'src/awards/awards.module';
 import { VolunteerModule } from 'src/volunteer/volunteer.module';
 
 @Module({
-  imports: [ExperienceModule, BasicsModule, EducationModule, SkillsModule, AwardsModule, VolunteerModule],
+  imports: [
+    ExperienceModule,
+    BasicsModule,
+    EducationModule,
+    SkillsModule,
+    AwardsModule,
+    VolunteerModule,
+  ],
   controllers: [ResumeController],
   providers: [ResumeService],
 })

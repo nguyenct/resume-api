@@ -7,7 +7,9 @@ import { Basic, BasicDocument } from './schemas/basic.schema';
 
 @Injectable()
 export class BasicsService {
-  constructor(@InjectModel(Basic.name) private basicModel: Model<BasicDocument>) {}
+  constructor(
+    @InjectModel(Basic.name) private basicModel: Model<BasicDocument>,
+  ) {}
 
   async create(createBasicDto: CreateBasicDto): Promise<Basic> {
     const basics = await this.basicModel.find({}, null, { limit: 1 });
@@ -15,7 +17,7 @@ export class BasicsService {
     if (alreadyExists) {
       throw new HttpException(
         'Basic information already exists, please delete or update',
-        HttpStatus.CONFLICT
+        HttpStatus.CONFLICT,
       );
     }
     const createdBasic = new this.basicModel(createBasicDto);
@@ -31,10 +33,13 @@ export class BasicsService {
   }
 
   async update(id: string, updateBasicDto: UpdateBasicDto): Promise<Basic> {
-    return this.basicModel.findByIdAndUpdate(id, updateBasicDto, { new: true, useFindAndModify: false });
+    return this.basicModel.findByIdAndUpdate(id, updateBasicDto, {
+      new: true,
+      useFindAndModify: false,
+    });
   }
 
   async remove(id: string): Promise<any> {
-    return this.basicModel.deleteOne({ _id: id })
+    return this.basicModel.deleteOne({ _id: id });
   }
 }

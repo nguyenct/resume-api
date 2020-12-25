@@ -14,6 +14,6 @@ export class TokenStrategy extends PassportStrategy(Strategy) {
     if (user) {
       return user;
     }
-    throw new UnauthorizedException(); 
+    throw new UnauthorizedException();
   }
 }

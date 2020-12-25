@@ -9,7 +9,7 @@ export class Award {
   @ApiPropertyOptional()
   @Prop()
   title: string;
-  
+
   @ApiPropertyOptional()
   @Prop()
   date: string;

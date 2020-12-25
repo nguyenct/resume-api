@@ -9,7 +9,7 @@ export class Education {
   @ApiPropertyOptional()
   @Prop()
   institution: string;
-  
+
   @ApiPropertyOptional()
   @Prop()
   area: string;

@@ -1,8 +1,22 @@
-import { Controller, Get, Post, Body, Put, Param, Delete, UseGuards } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Put,
+  Param,
+  Delete,
+  UseGuards,
+} from '@nestjs/common';
 import { ExperienceService } from './experience.service';
 import { CreateExperienceDto } from './dto/create-experience.dto';
 import { UpdateExperienceDto } from './dto/update-experience.dto';
-import { ApiHeader, ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
+import {
+  ApiHeader,
+  ApiOkResponse,
+  ApiOperation,
+  ApiTags,
+} from '@nestjs/swagger';
 import { Roles } from 'src/common/decorators/roles.decorators';
 import { Role } from 'src/common/enums/role.enum';
 import { Experience } from './schemas/experience.schema';
@@ -14,7 +28,7 @@ import { RolesGuard } from 'src/common/guards/roles.guard';
 @ApiHeader({
   name: 'Authorization',
   description: 'Bearer auth token',
-  required: true
+  required: true,
 })
 @UseGuards(TokenAuthGuard, RolesGuard)
 export class ExperienceController {
@@ -26,7 +40,9 @@ export class ExperienceController {
     summary: 'Create experience',
     description: 'Creates the experience resource',
   })
-  createExperience(@Body() createExperienceDto: CreateExperienceDto): Promise<Experience> {
+  createExperience(
+    @Body() createExperienceDto: CreateExperienceDto,
+  ): Promise<Experience> {
     return this.experienceService.create(createExperienceDto);
   }
 
@@ -44,9 +60,13 @@ export class ExperienceController {
   @Roles(Role.Admin)
   @ApiOperation({
     summary: 'Update education',
-    description: 'Updates the education resource associated with the provided id',
+    description:
+      'Updates the education resource associated with the provided id',
   })
-  updateExperience(@Param('id') id: string, @Body() updateExperienceDto: UpdateExperienceDto): Promise<Experience> {
+  updateExperience(
+    @Param('id') id: string,
+    @Body() updateExperienceDto: UpdateExperienceDto,
+  ): Promise<Experience> {
     return this.experienceService.update(id, updateExperienceDto);
   }
 
@@ -54,7 +74,8 @@ export class ExperienceController {
   @Roles(Role.Admin)
   @ApiOperation({
     summary: 'Delete education',
-    description: 'Deletes the education resource associated with the provided id',
+    description:
+      'Deletes the education resource associated with the provided id',
   })
   @ApiOkResponse()
   removeExperience(@Param('id') id: string) {

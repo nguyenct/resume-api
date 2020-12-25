@@ -1,8 +1,22 @@
-import { Controller, Get, Post, Body, Put, Param, Delete, UseGuards } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Put,
+  Param,
+  Delete,
+  UseGuards,
+} from '@nestjs/common';
 import { EducationService } from './education.service';
 import { CreateEducationDto } from './dto/create-education.dto';
 import { UpdateEducationDto } from './dto/update-education.dto';
-import { ApiHeader, ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
+import {
+  ApiHeader,
+  ApiOkResponse,
+  ApiOperation,
+  ApiTags,
+} from '@nestjs/swagger';
 import { Education } from './schemas/education.schema';
 import { RolesGuard } from 'src/common/guards/roles.guard';
 import { TokenAuthGuard } from 'src/auth/token-auth.guard';
@@ -14,7 +28,7 @@ import { Roles } from 'src/common/decorators/roles.decorators';
 @ApiHeader({
   name: 'Authorization',
   description: 'Bearer auth token',
-  required: true
+  required: true,
 })
 @UseGuards(TokenAuthGuard, RolesGuard)
 export class EducationController {
@@ -26,7 +40,9 @@ export class EducationController {
     summary: 'Create education',
     description: 'Creates the education resource',
   })
-  createEducation(@Body() createEducationDto: CreateEducationDto): Promise<Education> {
+  createEducation(
+    @Body() createEducationDto: CreateEducationDto,
+  ): Promise<Education> {
     return this.educationService.create(createEducationDto);
   }
 
@@ -44,9 +60,13 @@ export class EducationController {
   @Roles(Role.Admin)
   @ApiOperation({
     summary: 'Update education',
-    description: 'Updates the education resource associated with the provided id',
+    description:
+      'Updates the education resource associated with the provided id',
   })
-  updateEducation(@Param('id') id: string, @Body() updateEducationDto: UpdateEducationDto): Promise<Education> {
+  updateEducation(
+    @Param('id') id: string,
+    @Body() updateEducationDto: UpdateEducationDto,
+  ): Promise<Education> {
     return this.educationService.update(id, updateEducationDto);
   }
 
@@ -54,7 +74,8 @@ export class EducationController {
   @Roles(Role.Admin)
   @ApiOperation({
     summary: 'Delete education',
-    description: 'Deletes the education resource associated with the provided id',
+    description:
+      'Deletes the education resource associated with the provided id',
   })
   @ApiOkResponse()
   removeEducation(@Param('id') id: string) {

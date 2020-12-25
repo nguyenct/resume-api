@@ -9,7 +9,7 @@ export class Skill {
   @ApiPropertyOptional()
   @Prop()
   name: string;
-  
+
   @ApiPropertyOptional()
   @Prop()
   level: string;

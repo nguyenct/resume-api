@@ -7,7 +7,10 @@ import { Volunteer, VolunteerDocument } from './schemas/volunteer.schema';
 
 @Injectable()
 export class VolunteerService {
-  constructor(@InjectModel(Volunteer.name) private volunteerModel: Model<VolunteerDocument>) {}
+  constructor(
+    @InjectModel(Volunteer.name)
+    private volunteerModel: Model<VolunteerDocument>,
+  ) {}
 
   async create(createVolunteerDto: CreateVolunteerDto): Promise<Volunteer> {
     const createdVolunteer = new this.volunteerModel(createVolunteerDto);
@@ -18,11 +21,17 @@ export class VolunteerService {
     return this.volunteerModel.find();
   }
 
-  async update(id: string, updateVolunteerDto: UpdateVolunteerDto): Promise<Volunteer> {
-    return this.volunteerModel.findByIdAndUpdate(id, updateVolunteerDto, { new: true, useFindAndModify: false });
+  async update(
+    id: string,
+    updateVolunteerDto: UpdateVolunteerDto,
+  ): Promise<Volunteer> {
+    return this.volunteerModel.findByIdAndUpdate(id, updateVolunteerDto, {
+      new: true,
+      useFindAndModify: false,
+    });
   }
 
   async remove(id: string): Promise<any> {
-    return this.volunteerModel.deleteOne({ _id: id })
+    return this.volunteerModel.deleteOne({ _id: id });
   }
 }

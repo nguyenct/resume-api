@@ -12,7 +12,7 @@ import { Resume } from './schemas/resume.schema';
 @ApiHeader({
   name: 'Authorization',
   description: 'Bearer auth token',
-  required: true
+  required: true,
 })
 @UseGuards(TokenAuthGuard, RolesGuard)
 export class ResumeController {
@@ -22,7 +22,8 @@ export class ResumeController {
   @Roles(Role.Admin, Role.User)
   @ApiOperation({
     summary: 'Retrieve resume',
-    description: 'Retrieves the details of my resume constructed according to the JSONResume.org schema',
+    description:
+      'Retrieves the details of my resume constructed according to the JSONResume.org schema',
   })
   getResume(): Promise<Resume> {
     return this.resumeService.get();

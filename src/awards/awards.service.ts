@@ -7,7 +7,9 @@ import { Award, AwardDocument } from './schemas/award.schema';
 
 @Injectable()
 export class AwardsService {
-  constructor(@InjectModel(Award.name) private awardModel: Model<AwardDocument>) {}
+  constructor(
+    @InjectModel(Award.name) private awardModel: Model<AwardDocument>,
+  ) {}
 
   async create(createAwardDto: CreateAwardDto): Promise<Award> {
     const createdAward = new this.awardModel(createAwardDto);
@@ -19,11 +21,13 @@ export class AwardsService {
   }
 
   async update(id: string, updateAwardDto: UpdateAwardDto): Promise<Award> {
-    return this.awardModel.findByIdAndUpdate(id, updateAwardDto, { new: true, useFindAndModify: false });
+    return this.awardModel.findByIdAndUpdate(id, updateAwardDto, {
+      new: true,
+      useFindAndModify: false,
+    });
   }
 
   async remove(id: string): Promise<any> {
-    return this.awardModel.deleteOne({ _id: id })
+    return this.awardModel.deleteOne({ _id: id });
   }
 }
-

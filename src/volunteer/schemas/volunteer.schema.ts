@@ -9,7 +9,7 @@ export class Volunteer {
   @ApiPropertyOptional()
   @Prop()
   company: string;
-  
+
   @ApiPropertyOptional()
   @Prop()
   position: string;

@@ -10,7 +10,7 @@ export class Basic {
   @ApiPropertyOptional()
   @Prop()
   name: string;
-  
+
   @ApiPropertyOptional()
   @Prop()
   label: string;
@@ -36,13 +36,15 @@ export class Basic {
   summary: string;
 
   @ApiPropertyOptional()
-  @Prop(raw({
-    address: { type: String },
-    postalCode: { type: String },
-    city: { type: String },
-    countryCode: { type: String },
-    region: { type: String },
-  }))
+  @Prop(
+    raw({
+      address: { type: String },
+      postalCode: { type: String },
+      city: { type: String },
+      countryCode: { type: String },
+      region: { type: String },
+    }),
+  )
   location: Location;
 
   @ApiPropertyOptional()

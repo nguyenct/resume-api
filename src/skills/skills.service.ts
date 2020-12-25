@@ -7,7 +7,9 @@ import { Skill, SkillDocument } from './schemas/skill.schema';
 
 @Injectable()
 export class SkillsService {
-  constructor(@InjectModel(Skill.name) private skillModel: Model<SkillDocument>) {}
+  constructor(
+    @InjectModel(Skill.name) private skillModel: Model<SkillDocument>,
+  ) {}
 
   async create(createSkillDto: CreateSkillDto): Promise<Skill> {
     const createdSkill = new this.skillModel(createSkillDto);
@@ -19,10 +21,13 @@ export class SkillsService {
   }
 
   async update(id: string, updateSkillDto: UpdateSkillDto): Promise<Skill> {
-    return this.skillModel.findByIdAndUpdate(id, updateSkillDto, { new: true, useFindAndModify: false });
+    return this.skillModel.findByIdAndUpdate(id, updateSkillDto, {
+      new: true,
+      useFindAndModify: false,
+    });
   }
 
   async remove(id: string): Promise<any> {
-    return this.skillModel.deleteOne({ _id: id })
+    return this.skillModel.deleteOne({ _id: id });
   }
 }

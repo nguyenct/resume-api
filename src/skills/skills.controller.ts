@@ -1,8 +1,22 @@
-import { Controller, Get, Post, Body, Put, Param, Delete, UseGuards } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Put,
+  Param,
+  Delete,
+  UseGuards,
+} from '@nestjs/common';
 import { SkillsService } from './skills.service';
 import { CreateSkillDto } from './dto/create-skill.dto';
 import { UpdateSkillDto } from './dto/update-skill.dto';
-import { ApiHeader, ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
+import {
+  ApiHeader,
+  ApiOkResponse,
+  ApiOperation,
+  ApiTags,
+} from '@nestjs/swagger';
 import { Skill } from './schemas/skill.schema';
 import { TokenAuthGuard } from 'src/auth/token-auth.guard';
 import { Roles } from 'src/common/decorators/roles.decorators';
@@ -14,7 +28,7 @@ import { RolesGuard } from 'src/common/guards/roles.guard';
 @ApiHeader({
   name: 'Authorization',
   description: 'Bearer auth token',
-  required: true
+  required: true,
 })
 @UseGuards(TokenAuthGuard, RolesGuard)
 export class SkillsController {
@@ -46,7 +60,10 @@ export class SkillsController {
     summary: 'Update skill',
     description: 'Updates the skill resource associated with the provided id',
   })
-  updateSkill(@Param('id') id: string, @Body() updateSkillDto: UpdateSkillDto): Promise<Skill> {
+  updateSkill(
+    @Param('id') id: string,
+    @Body() updateSkillDto: UpdateSkillDto,
+  ): Promise<Skill> {
     return this.skillsService.update(id, updateSkillDto);
   }
 

@@ -1,5 +1,5 @@
-import { ApiPropertyOptional } from "@nestjs/swagger";
-import { IsNotEmpty } from "class-validator";
+import { ApiPropertyOptional } from '@nestjs/swagger';
+import { IsNotEmpty } from 'class-validator';
 
 export class Profile {
   network: string;
@@ -18,7 +18,7 @@ export class Location {
 export class CreateBasicDto {
   @IsNotEmpty()
   name: string;
-  
+
   @ApiPropertyOptional()
   label: string;
 

@@ -6,7 +6,7 @@ export default () => ({
   },
   port: parseInt(process.env.PORT, 10) || 3000,
   database: {
-    uri: process.env.DATABASE_URI
+    uri: process.env.DATABASE_URI,
   },
   userToken: process.env.USER_API_TOKEN,
   adminToken: process.env.ADMIN_API_TOKEN,

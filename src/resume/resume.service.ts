@@ -29,6 +29,6 @@ export class ResumeService {
       skills: await this.skillsService.findAll(),
       awards: await this.awardsService.findAll(),
       volunteer: await this.volunteerService.findAll(),
-    }
+    };
   }
 }

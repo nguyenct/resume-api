@@ -1,5 +1,19 @@
-import { Controller, Get, Post, Body, Put, Param, Delete, UseGuards } from '@nestjs/common';
-import { ApiTags, ApiHeader, ApiOperation, ApiOkResponse } from '@nestjs/swagger';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Put,
+  Param,
+  Delete,
+  UseGuards,
+} from '@nestjs/common';
+import {
+  ApiTags,
+  ApiHeader,
+  ApiOperation,
+  ApiOkResponse,
+} from '@nestjs/swagger';
 import { TokenAuthGuard } from 'src/auth/token-auth.guard';
 import { Roles } from 'src/common/decorators/roles.decorators';
 import { Role } from 'src/common/enums/role.enum';
@@ -14,7 +28,7 @@ import { Award } from './schemas/award.schema';
 @ApiHeader({
   name: 'Authorization',
   description: 'Bearer auth token',
-  required: true
+  required: true,
 })
 @UseGuards(TokenAuthGuard, RolesGuard)
 export class AwardsController {
@@ -46,7 +60,10 @@ export class AwardsController {
     summary: 'Update award',
     description: 'Updates the award resource associated with the provided id',
   })
-  updateAward(@Param('id') id: string, @Body() updateAwardDto: UpdateAwardDto): Promise<Award> {
+  updateAward(
+    @Param('id') id: string,
+    @Body() updateAwardDto: UpdateAwardDto,
+  ): Promise<Award> {
     return this.awardsService.update(id, updateAwardDto);
   }
 
