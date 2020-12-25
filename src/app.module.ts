@@ -10,6 +10,7 @@ import { UsersModule } from './users/users.module';
 import { BasicsModule } from './basics/basics.module';
 import { ResumesController } from './resumes/resumes.controller';
 import { AwardsModule } from './awards/awards.module';
+import { VolunteerModule } from './volunteer/volunteer.module';
 import config from './config/configuration';
 
 @Module({
@@ -31,6 +32,7 @@ import config from './config/configuration';
     AuthModule,
     UsersModule,
     AwardsModule,
+    VolunteerModule,
   ],
   controllers: [ResumesController],
   providers: [AppService],
