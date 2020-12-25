@@ -1,5 +1,9 @@
-import { Controller, Get, Post, Body, Put, Param, Delete } from '@nestjs/common';
-import { ApiConflictResponse, ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
+import { Controller, Get, Post, Body, Put, Param, Delete, UseGuards } from '@nestjs/common';
+import { ApiConflictResponse, ApiHeader, ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
+import { TokenAuthGuard } from 'src/auth/token-auth.guard';
+import { Roles } from 'src/common/decorators/roles.decorators';
+import { Role } from 'src/common/enums/role.enum';
+import { RolesGuard } from 'src/common/guards/roles.guard';
 import { BasicsService } from './basics.service';
 import { CreateBasicDto } from './dto/create-basic.dto';
 import { UpdateBasicDto } from './dto/update-basic.dto';
@@ -7,10 +11,17 @@ import { Basic } from './schemas/basic.schema';
 
 @ApiTags('Basics')
 @Controller('basics')
+@ApiHeader({
+  name: 'Authorization',
+  description: 'Bearer auth token',
+  required: true
+})
+@UseGuards(TokenAuthGuard, RolesGuard)
 export class BasicsController {
   constructor(private readonly basicsService: BasicsService) {}
 
   @Post()
+  @Roles(Role.Admin)
   @ApiOperation({
     summary: 'Create basic information',
     description: 'Creates the basic information resource. Note: Only one can exist.',
@@ -23,6 +34,7 @@ export class BasicsController {
   }
 
   @Get()
+  @Roles(Role.User)
   @ApiOperation({
     summary: 'List basic information',
     description: 'Retrieves a list of the basic information resource. Note: Only one can exist.',
@@ -32,6 +44,7 @@ export class BasicsController {
   }
 
   @Get(':id')
+  @Roles(Role.User)
   @ApiOperation({
     summary: 'Get basic information',
     description: 'Retrieves the basic information resource associated with the provided id. Note: Only one can exist.',
