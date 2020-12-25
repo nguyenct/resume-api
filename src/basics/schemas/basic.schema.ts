@@ -1,32 +1,41 @@
 import { Prop, raw, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { ApiPropertyOptional } from '@nestjs/swagger';
 import { Document } from 'mongoose';
-import { Profiles } from '../dto/create-basic.dto';
+import { Profile, Location } from '../dto/create-basic.dto';
 
 export type BasicDocument = Basic & Document;
 
 @Schema()
 export class Basic {
+  @ApiPropertyOptional()
   @Prop()
   name: string;
-
+  
+  @ApiPropertyOptional()
   @Prop()
   label: string;
 
+  @ApiPropertyOptional()
   @Prop()
   picture: string;
 
+  @ApiPropertyOptional()
   @Prop()
   email: string;
 
+  @ApiPropertyOptional()
   @Prop()
   phone: string;
 
+  @ApiPropertyOptional()
   @Prop()
   website: string;
 
+  @ApiPropertyOptional()
   @Prop()
   summary: string;
 
+  @ApiPropertyOptional()
   @Prop(raw({
     address: { type: String },
     postalCode: { type: String },
@@ -34,10 +43,11 @@ export class Basic {
     countryCode: { type: String },
     region: { type: String },
   }))
-  location: Record<string, any>;
+  location: Location;
 
+  @ApiPropertyOptional()
   @Prop()
-  profiles: Profiles[];
+  profiles: Profile[];
 }
 
 export const BasicSchema = SchemaFactory.createForClass(Basic);
