@@ -2,7 +2,7 @@ import { Controller, Get, Post, Body, Put, Param, Delete } from '@nestjs/common'
 import { ExperienceService } from './experience.service';
 import { CreateExperienceDto } from './dto/create-experience.dto';
 import { UpdateExperienceDto } from './dto/update-experience.dto';
-import { ApiHeader, ApiOperation, ApiTags } from '@nestjs/swagger';
+import { ApiHeader, ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { Roles } from 'src/common/decorators/roles.decorators';
 import { Role } from 'src/common/enums/role.enum';
 
@@ -27,7 +27,7 @@ export class ExperienceController {
   }
 
   @Get()
-  @Roles(Role.User)
+  @Roles(Role.Admin, Role.User)
   @ApiOperation({
     summary: 'List experience',
     description: 'Retrieves list of the experience resources',
@@ -52,6 +52,7 @@ export class ExperienceController {
     summary: 'Delete education',
     description: 'Deletes the education resource associated with the provided id',
   })
+  @ApiOkResponse()
   removeExperience(@Param('id') id: string) {
     return this.experienceService.remove(id);
   }
