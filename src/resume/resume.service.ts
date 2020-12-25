@@ -1,6 +1,4 @@
 import { Injectable } from '@nestjs/common';
-import { InjectModel } from '@nestjs/mongoose';
-import { Model } from 'mongoose';
 import { AwardsService } from 'src/awards/awards.service';
 import { BasicsService } from 'src/basics/basics.service';
 import { EducationService } from 'src/education/education.service';
