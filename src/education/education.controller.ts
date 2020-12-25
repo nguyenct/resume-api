@@ -26,7 +26,7 @@ export class EducationController {
     summary: 'Create education',
     description: 'Creates the education resource',
   })
-  createEducation(@Body() createEducationDto: CreateEducationDto) {
+  createEducation(@Body() createEducationDto: CreateEducationDto): Promise<Education> {
     return this.educationService.create(createEducationDto);
   }
 
@@ -36,7 +36,7 @@ export class EducationController {
     summary: 'List education',
     description: 'Retrieves list of the education resources',
   })
-  findAllEducation() {
+  findAllEducation(): Promise<Education[]> {
     return this.educationService.findAll();
   }
 

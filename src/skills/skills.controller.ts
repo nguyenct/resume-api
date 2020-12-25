@@ -26,7 +26,7 @@ export class SkillsController {
     summary: 'Create skill',
     description: 'Creates the skill resource',
   })
-  createSkill(@Body() createSkillDto: CreateSkillDto) {
+  createSkill(@Body() createSkillDto: CreateSkillDto): Promise<Skill> {
     return this.skillsService.create(createSkillDto);
   }
 
@@ -36,7 +36,7 @@ export class SkillsController {
     summary: 'List skill',
     description: 'Retrieves list of the skill resources',
   })
-  findAllSkill() {
+  findAllSkill(): Promise<Skill[]> {
     return this.skillsService.findAll();
   }
 
@@ -46,7 +46,7 @@ export class SkillsController {
     summary: 'Update skill',
     description: 'Updates the skill resource associated with the provided id',
   })
-  updateSkill(@Param('id') id: string, @Body() updateSkillDto: UpdateSkillDto) {
+  updateSkill(@Param('id') id: string, @Body() updateSkillDto: UpdateSkillDto): Promise<Skill> {
     return this.skillsService.update(id, updateSkillDto);
   }
 

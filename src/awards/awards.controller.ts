@@ -1,10 +1,13 @@
-import { Controller, Get, Post, Body, Put, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Put, Param, Delete, UseGuards } from '@nestjs/common';
 import { ApiTags, ApiHeader, ApiOperation, ApiOkResponse } from '@nestjs/swagger';
+import { TokenAuthGuard } from 'src/auth/token-auth.guard';
 import { Roles } from 'src/common/decorators/roles.decorators';
 import { Role } from 'src/common/enums/role.enum';
+import { RolesGuard } from 'src/common/guards/roles.guard';
 import { AwardsService } from './awards.service';
 import { CreateAwardDto } from './dto/create-award.dto';
 import { UpdateAwardDto } from './dto/update-award.dto';
+import { Award } from './schemas/award.schema';
 
 @ApiTags('Education')
 @Controller('awards')
@@ -13,6 +16,7 @@ import { UpdateAwardDto } from './dto/update-award.dto';
   description: 'Bearer auth token',
   required: true
 })
+@UseGuards(TokenAuthGuard, RolesGuard)
 export class AwardsController {
   constructor(private readonly awardsService: AwardsService) {}
 
@@ -22,7 +26,7 @@ export class AwardsController {
     summary: 'Create award',
     description: 'Creates the award resource',
   })
-  createAward(@Body() createAwardDto: CreateAwardDto) {
+  createAward(@Body() createAwardDto: CreateAwardDto): Promise<Award> {
     return this.awardsService.create(createAwardDto);
   }
 
@@ -32,7 +36,7 @@ export class AwardsController {
     summary: 'List awards',
     description: 'Retrieves list of the award resources',
   })
-  findAllAward() {
+  findAllAward(): Promise<Award[]> {
     return this.awardsService.findAll();
   }
 
@@ -42,7 +46,7 @@ export class AwardsController {
     summary: 'Update award',
     description: 'Updates the award resource associated with the provided id',
   })
-  update(@Param('id') id: string, @Body() updateAwardDto: UpdateAwardDto) {
+  update(@Param('id') id: string, @Body() updateAwardDto: UpdateAwardDto): Promise<Award> {
     return this.awardsService.update(id, updateAwardDto);
   }
 
