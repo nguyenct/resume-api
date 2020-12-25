@@ -9,7 +9,7 @@ import { CreateAwardDto } from './dto/create-award.dto';
 import { UpdateAwardDto } from './dto/update-award.dto';
 import { Award } from './schemas/award.schema';
 
-@ApiTags('Education')
+@ApiTags('Awards')
 @Controller('awards')
 @ApiHeader({
   name: 'Authorization',
@@ -46,7 +46,7 @@ export class AwardsController {
     summary: 'Update award',
     description: 'Updates the award resource associated with the provided id',
   })
-  update(@Param('id') id: string, @Body() updateAwardDto: UpdateAwardDto): Promise<Award> {
+  updateAward(@Param('id') id: string, @Body() updateAwardDto: UpdateAwardDto): Promise<Award> {
     return this.awardsService.update(id, updateAwardDto);
   }
 
@@ -57,7 +57,7 @@ export class AwardsController {
     description: 'Deletes the award resource associated with the provided id',
   })
   @ApiOkResponse()
-  remove(@Param('id') id: string) {
+  removeAward(@Param('id') id: string) {
     return this.awardsService.remove(id);
   }
 }
