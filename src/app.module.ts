@@ -8,9 +8,9 @@ import { ExperienceModule } from './experience/experience.module';
 import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
 import { BasicsModule } from './basics/basics.module';
-import { ResumesController } from './resumes/resumes.controller';
 import { AwardsModule } from './awards/awards.module';
 import { VolunteerModule } from './volunteer/volunteer.module';
+import { ResumeModule } from './resume/resume.module';
 import config from './config/configuration';
 
 @Module({
@@ -33,8 +33,8 @@ import config from './config/configuration';
     UsersModule,
     AwardsModule,
     VolunteerModule,
+    ResumeModule,
   ],
-  controllers: [ResumesController],
   providers: [AppService],
 })
 export class AppModule {
