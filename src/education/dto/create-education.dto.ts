@@ -1,5 +1,5 @@
 import { ApiPropertyOptional } from "@nestjs/swagger";
-import { IsNotEmpty } from "class-validator";
+import { IsISO8601, IsNotEmpty, IsOptional } from "class-validator";
 
 export class CreateEducationDto {
   @IsNotEmpty()
@@ -11,11 +11,15 @@ export class CreateEducationDto {
   @IsNotEmpty()
   studyType: string;
 
-  @IsNotEmpty()
-  startDate: Date;
+  @ApiPropertyOptional()
+  @IsOptional()
+  @IsISO8601()
+  startDate: string;
 
   @ApiPropertyOptional()
-  endDate: Date;
+  @IsOptional()
+  @IsISO8601()
+  endDate: string;
 
   @ApiPropertyOptional()
   gpa: number;

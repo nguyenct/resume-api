@@ -19,7 +19,7 @@ export class EducationService {
   }
 
   async update(id: string, updateEducationDto: UpdateEducationDto): Promise<Education> {
-    return this.educationModel.findByIdAndUpdate(id, {updateEducationDto}, { new: true, useFindAndModify: false });
+    return this.educationModel.findByIdAndUpdate(id, updateEducationDto, { new: true, useFindAndModify: false });
   }
 
   async remove(id: string): Promise<any> {
