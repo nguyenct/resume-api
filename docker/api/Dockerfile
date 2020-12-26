@@ -6,9 +6,8 @@ RUN npm ci
 COPY . .
 RUN npm run build
 
-FROM build-library AS development
+FROM node:14.15.1 AS development
 WORKDIR /app
-COPY --from=build-library /app ./
 CMD ["npm", "run", "start:dev"]
 
 FROM node:14.15.1-alpine AS production
