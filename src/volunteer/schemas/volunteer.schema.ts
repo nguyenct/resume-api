@@ -8,7 +8,7 @@ export type VolunteerDocument = Volunteer & Document;
 export class Volunteer {
   @ApiPropertyOptional()
   @Prop()
-  company: string;
+  organization: string;
 
   @ApiPropertyOptional()
   @Prop()
