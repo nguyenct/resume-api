@@ -1,5 +1,5 @@
 ## Description
-This is my resume API built off of the [Nest](https://github.com/nestjs/nest) framework.
+This is my resume API built off of the [NestJS](https://github.com/nestjs/nest) framework.
 
 I wrote this project with NestJS to learn more about the framework and how it could help keep API documentation maintainable and close to the source code with [NestJS Swagger](https://github.com/nestjs/swagger) and [NestJS Redoc](https://github.com/mxarc/nestjs-redoc)
 This project has a specific purpose of serving one and only one resume using the [Json Resume Schema](https://jsonresume.org/).
