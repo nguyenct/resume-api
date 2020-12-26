@@ -59,6 +59,7 @@ ADMIN_API_TOKEN=
 MONGO_INITDB_ROOT_USERNAME=
 MONGO_INITDB_ROOT_PASSWORD=
 DATABASE_URI=mongodb://{username}:{password}@mongo/{database_name}?authSource=admin
+MONGODB_IMAGE=mongo:4.4.2-bionic
 ```
 
 ## Running the app

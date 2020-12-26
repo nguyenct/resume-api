@@ -13,7 +13,7 @@ services:
     ports:
       - 3000:3000
   mongo:
-    image: mongo:4.4.2-bionic
+    image: ${MONGODB_IMAGE}
     restart: always
     environment:
       MONGO_INITDB_ROOT_USERNAME: "${MONGO_INITDB_ROOT_USERNAME}"
