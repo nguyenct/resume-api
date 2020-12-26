@@ -5,11 +5,8 @@ services:
       - mongo
     build:
       context: .
-      target: development
+      target: production
       dockerfile: docker/api/Dockerfile
-    volumes:
-      - ./node_modules:/app/node_modules/
-      - ./:/app/
     ports:
       - 3000:3000
   mongo:

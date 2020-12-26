@@ -1,0 +1,16 @@
+version: "3.8"
+services:
+  api:
+    depends_on:
+      - mongo
+    build:
+      context: .
+      target: production
+      dockerfile: docker/api/Dockerfile
+    ports:
+      - 3000:3000
+  mongo:
+    image: andresvidal/rpi3-mongodb3
+    restart: always
+    ports:
+      - 27017:27017
