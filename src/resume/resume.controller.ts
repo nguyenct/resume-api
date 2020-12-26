@@ -20,6 +20,24 @@ import * as theme from 'jsonresume-theme-elegant';
 export class ResumeController {
   constructor(private readonly resumeService: ResumeService) {}
 
+  @Get('render')
+  @Roles(Role.Admin, Role.User)
+  @ApiOperation({
+    summary: 'Render resume',
+    description: 'Renders HTML from JSONResume.org schema with Theme: Elegant',
+  })
+  @ApiQuery({
+    name: 'access_token',
+    type: String,
+    description: 'Your access token',
+  })
+  @ApiOkResponse()
+  async renderResume() {
+    const resumeJson = await this.resumeService.get();
+    const resumeHTML = theme.render(resumeJson, {});
+    return resumeHTML;
+  }
+
   @Get()
   @Roles(Role.Admin, Role.User)
   @ApiHeader({
@@ -34,24 +52,5 @@ export class ResumeController {
   })
   getResume(): Promise<Resume> {
     return this.resumeService.get();
-  }
-
-  @Get('render')
-  @Roles(Role.Admin, Role.User)
-  @ApiOperation({
-    summary: 'Render resume',
-    description:
-      'Renders HTML from JSONResume.org schema with Theme: Elegant. Go to https://{{ROOT_URI}}/resume/render?access_token={{your_access_token}}',
-  })
-  @ApiQuery({
-    name: 'access_token',
-    type: String,
-    description: 'Your access token',
-  })
-  @ApiOkResponse()
-  async renderResume() {
-    const resumeJson = await this.resumeService.get();
-    const resumeHTML = theme.render(resumeJson, {});
-    return resumeHTML;
   }
 }
