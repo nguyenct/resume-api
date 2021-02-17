@@ -37,8 +37,8 @@ export class VolunteerController {
   @Post()
   @Roles(Role.Admin)
   @ApiOperation({
-    summary: 'Create experience',
-    description: 'Creates the experience resource',
+    summary: 'Create volunteer',
+    description: 'Creates the volunteer resource',
   })
   createVolunteer(
     @Body() createVolunteerDto: CreateVolunteerDto,
@@ -49,8 +49,8 @@ export class VolunteerController {
   @Get()
   @Roles(Role.Admin, Role.User)
   @ApiOperation({
-    summary: 'List experience',
-    description: 'Retrieves list of the experience resources',
+    summary: 'List volunteer',
+    description: 'Retrieves list of the volunteer resources',
   })
   findAllVolunteer(): Promise<Volunteer[]> {
     return this.volunteerService.findAll();
@@ -59,9 +59,9 @@ export class VolunteerController {
   @Put(':id')
   @Roles(Role.Admin)
   @ApiOperation({
-    summary: 'Update education',
+    summary: 'Update volunteer',
     description:
-      'Updates the education resource associated with the provided id',
+      'Updates the volunteer resource associated with the provided id',
   })
   updateVolunteer(
     @Param('id') id: string,
@@ -73,9 +73,9 @@ export class VolunteerController {
   @Delete(':id')
   @Roles(Role.Admin)
   @ApiOperation({
-    summary: 'Delete education',
+    summary: 'Delete volunteer',
     description:
-      'Deletes the education resource associated with the provided id',
+      'Deletes the volunteer resource associated with the provided id',
   })
   @ApiOkResponse()
   removeVolunteer(@Param('id') id: string) {
